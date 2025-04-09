@@ -1,0 +1,38 @@
+.wrapper {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+
+  h1 {
+    text-align: start;
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 600;
+  }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+
+  .item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+  }
+}
