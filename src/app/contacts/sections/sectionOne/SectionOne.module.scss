@@ -31,7 +31,7 @@
       width: 100%;
 
       &:focus {
-        border-color: #007aff;
+        border-color: #99f63d;
         outline: none;
       }
     }
@@ -44,16 +44,17 @@
     button {
       margin-top: 1rem;
       padding: 0.75rem 1rem;
-      background-color: #007aff;
-      color: #fff;
+      background-color: #99f63d;
+      color: #000;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.2s;
 
-      &:hover {
-        background-color: #005dc1;
+      &:focus {
+        background: #fff;
+        border-color: #99f63d;
       }
     }
   }

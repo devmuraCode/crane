@@ -2,12 +2,16 @@ import React from "react";
 import styles from "./Footer.module.scss";
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import Container from "../Container/Container";
+import Logo from "../Navbar/Logo";
 
 export const Footer = () => {
   return (
     <div className={styles.footer}>
       <Container>
         <div className={styles.top}>
+          <div className={styles.column}>
+            <Logo />
+          </div>
           <div className={styles.column}>
             <h4>Компания</h4>
             <ul>
@@ -52,17 +56,6 @@ export const Footer = () => {
               <FaEnvelope /> Продажа запчастей: <br /> parts@spectteh.ru
             </p>
           </div>
-        </div>
-
-        <div className={styles.bottom}>
-          <p>
-            © 2025 Компания «СпецТехника». Все права защищены. Обращаем Ваше
-            внимание на то, что данный интернет-сайт носит исключительно
-            информационный характер и ни при каких условиях информационные
-            материалы и цены, размещенные на сайте, не является публичной
-            офертой, определяемой положениями Статьи 437 Гражданского кодекса
-            РФ.
-          </p>
         </div>
       </Container>
     </div>

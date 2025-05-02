@@ -117,6 +117,7 @@ function Carousel({
         canScrollPrev,
         canScrollNext,
       }}
+     
     >
       <div
         onKeyDownCapture={handleKeyDown}
@@ -129,7 +130,7 @@ function Carousel({
         {children}
       </div>
     </CarouselContext.Provider>
-  )
+  );
 }
 
 function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {

@@ -1,10 +1,37 @@
+"use client";
+import { useEffect, useRef } from "react";
 import Container from "@/components/Container/Container";
 import styles from "./SectionThree.module.scss";
 import Image from "next/image";
-import about from "@/assets/about.png";
+import about from "@/assets/logo2.jpg";
+
 export const SectionThree = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && wrapperRef.current) {
+          wrapperRef.current.classList.add(styles.animate);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (wrapperRef.current) {
+      observer.observe(wrapperRef.current);
+    }
+
+    return () => {
+      if (wrapperRef.current) {
+        observer.unobserve(wrapperRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className={styles.wrapper}>
+    <div ref={wrapperRef} className={styles.wrapper}>
       <Container>
         <h1>О компании</h1>
         <div>
@@ -36,7 +63,7 @@ export const SectionThree = () => {
               </p>
             </div>
             <div>
-              <Image src={about} alt="" />
+              <Image src={about} alt="О компании" />
             </div>
           </div>
         </div>

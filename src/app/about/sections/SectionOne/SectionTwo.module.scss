@@ -1,7 +1,7 @@
 .wrapper {
   padding: 3rem 0;
 
-  h1 {
+  h1, h2 {
     font-family: Manrope;
     font-weight: 600;
     font-size: 22px;
@@ -10,6 +10,7 @@
     color: black;
     padding-bottom: 2rem;
   }
+
   p {
     font-family: Manrope;
     font-weight: 300;
@@ -17,21 +18,24 @@
     line-height: 25px;
     color: #696969;
   }
-  h2 {
-    font-family: Manrope;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 100%;
-    text-align: start;
-    color: black;
-    padding: 2rem 0;
-  }
-  ul li {
-    list-style: disc;
-    font-family: Manrope;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 25px;
-    color: #696969;
+
+  ul {
+    padding-left: 1.2rem;
+
+    li {
+      list-style-type: disc;
+      list-style-position: outside;
+      margin: 0 0 1rem 1rem; 
+      font-family: Manrope;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 25px;
+      color: #696969;
+
+      strong {
+        font-weight: 600;
+        color: black;
+      }
+    }
   }
 }

@@ -4,7 +4,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["example.com"],
+    domains: [
+      "dintek.ru",
+      "st24.stpulscen.ru",
+      "mal-meh.ru",
+      "www.spetcteh.ru",
+      "qsgrp.com",
+    ],
   },
   sassOptions: {
     includePaths: ["./src/styles"],
