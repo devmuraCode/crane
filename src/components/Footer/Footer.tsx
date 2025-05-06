@@ -3,6 +3,7 @@ import styles from "./Footer.module.scss";
 import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import Container from "../Container/Container";
 import Logo from "../Navbar/Logo";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -15,9 +16,9 @@ export const Footer = () => {
           <div className={styles.column}>
             <h4>Компания</h4>
             <ul>
-              <li>О компании</li>
-              <li>Партнеры</li>
-              <li>Реквизиты</li>
+              <Link href={"/about"}>О компании</Link>
+              <br />
+              <Link href={"/contacts"}>Контакты</Link>
             </ul>
           </div>
 
@@ -42,18 +43,15 @@ export const Footer = () => {
           <div className={styles.column}>
             <h4>Наши контакты</h4>
             <p>
-              <FaPhoneAlt /> <strong>8-800-500-27-25</strong>
+              <FaPhoneAlt /> <strong>+998 99-853-08-53</strong>
+            </p>
+            <p>
+              <FaPhoneAlt /> <strong>+998 97-753-06-53</strong>
             </p>
             <p>Пн. – Пт.: с 9:00 до 18:00</p>
             <p>
-              <FaMapMarkerAlt /> Ташкентский район, населённый пункт Дамарык,
-              улица Мустакиллик 2
-            </p>
-            <p>
-              <FaEnvelope /> Продажа техники: <br /> sale@spectteh.ru
-            </p>
-            <p>
-              <FaEnvelope /> Продажа запчастей: <br /> parts@spectteh.ru
+              <FaMapMarkerAlt /> Адрес: M Fozilov jamoa xo'jaligi, 111109,
+              Tashkent, Tashkent Region
             </p>
           </div>
         </div>

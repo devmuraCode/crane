@@ -47,14 +47,15 @@
   // Mobile
   @media (max-width: 576px) {
     .card_group {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 0.5rem;
     }
 
     .card {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
+      align-items: center;
       text-align: center;
+      gap: 0.5rem;
     }
 
     h2 {
