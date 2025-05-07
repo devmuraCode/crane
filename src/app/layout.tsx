@@ -5,6 +5,7 @@ import { Manrope } from "next/font/google";
 import { Navbar } from "@/components/Navbar/Navbar";
 import Script from "next/script";
 import logo from "@/assets/logo.png";
+import { ToastContainer } from "react-toastify";
 
 const font = Manrope({ subsets: ["latin"] });
 
@@ -82,6 +83,7 @@ export default function RootLayout({
         </noscript>
 
         <Navbar />
+        <ToastContainer />
         {children}
         <Footer />
       </body>
