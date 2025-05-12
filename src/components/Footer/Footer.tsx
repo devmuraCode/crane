@@ -1,11 +1,31 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import styles from "./Footer.module.scss";
-import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import Container from "../Container/Container";
 import Logo from "../Navbar/Logo";
 import Link from "next/link";
+import axios from "axios";
+import { getequipmentTypes } from "@/lib/api";
+import { useQuery } from "@tanstack/react-query";
+import MenuItem from "../Navbar/MenuList";
 
 export const Footer = () => {
+  const {
+    data: equipmentTypes,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["equipmentTypes"],
+    queryFn: getequipmentTypes,
+  });
+
+  const plainEquipmentTypes = equipmentTypes?.map((item: any) => ({
+    id: item.id,
+    name: item.name,
+  }));
+
   return (
     <div className={styles.footer}>
       <Container>
@@ -13,30 +33,31 @@ export const Footer = () => {
           <div className={styles.column}>
             <Logo />
           </div>
+
           <div className={styles.column}>
             <h4>Компания</h4>
             <ul>
-              <Link href={"/about"}>О компании</Link>
-              <br />
-              <Link href={"/contacts"}>Контакты</Link>
+              <li>
+                <Link href="/about">О компании</Link>
+              </li>
+              <li>
+                <Link href="/contacts">Контакты</Link>
+              </li>
             </ul>
           </div>
 
           <div className={styles.column}>
             <h4>Каталог</h4>
             <ul>
-              <li>Бурильно-крановые машины</li>
-              <li>Автомобили с КМУ</li>
-              <li>Сортиментовозы, лесовозы</li>
-              <li>Эвакуаторы и автовозы</li>
-              <li>Автогидроподъемники</li>
-              <li>Бурильно-крановые установки</li>
-              <li>Гидроманипуляторы</li>
-              <li>Крановые установки</li>
-              <li>Доп. оборудование и запчасти</li>
-              <li>Каталог запчастей КМУ</li>
-              <li>Сервис и ремонт</li>
-              <li>Автомобили в наличии</li>
+              {isLoading && <p>Загрузка...</p>}
+              {error && <p>Ошибка загрузки</p>}
+              {plainEquipmentTypes?.map((item: any) => (
+                <MenuItem
+                  label={item.name}
+                  key={item.id}
+                  href={`/catalog/${item.name}`}
+                />
+              ))}
             </ul>
           </div>
 

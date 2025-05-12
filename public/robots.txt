@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: http://avto-kran.uz
+
+# Sitemaps
+Sitemap: http://avto-kran.uz/sitemap.xml

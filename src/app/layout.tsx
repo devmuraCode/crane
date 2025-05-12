@@ -6,7 +6,7 @@ import { Navbar } from "@/components/Navbar/Navbar";
 import Script from "next/script";
 import logo from "@/assets/logo.png";
 import { ToastContainer } from "react-toastify";
-
+import { QueryProvider } from "@/components/QueryProvider";
 const font = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,8 +22,54 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" amp="true">
       <head>
+        <meta charSet="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 minimum-scale=1 maximum-scale=1"
+        />
+        <meta
+          name="description"
+          content="Аренда кранов и спецтехники в Ташкенте и Узбекистане. Современные машины, квалифицированные операторы и быстрая доставка."
+        />
+        <meta
+          name="keywords"
+          content="аренда кранов Ташкент, спецтехника, автокраны, строительная техника Узбекистан"
+        />
+        <meta name="author" content="Crane" />
+        <meta name="language" content="ru" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Crane — Аренда кранов и спецтехники в Ташкенте"
+        />
+        <meta
+          property="og:description"
+          content="Современные краны и техника для ваших задач в Ташкенте и по всему Узбекистану."
+        />
+        <meta property="og:image" content="http://avto-kran.uz" />
+        <meta property="og:url" content="http://avto-kran.uz" />
+        <meta property="og:locale" content="ru_UZ" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Crane — Аренда кранов и спецтехники в Ташкенте"
+        />
+        <meta
+          name="twitter:description"
+          content="Современные краны и техника для ваших задач в Ташкенте и Узбекистане."
+        />
+        <meta name="twitter:image" content="http://avto-kran.uz" />
+
+        <link rel="canonical" href="http://avto-kran.uz" />
+        <title>Crane — Аренда кранов и спецтехники в Ташкенте</title>
+        <link rel="icon" href="./logo1.svg" />
         {/* Google Tag Manager */}
         <Script
           id="gtm-head"
@@ -67,7 +113,7 @@ export default function RootLayout({
                 clickmap:true,
                 trackLinks:true,
                 accurateTrackBounce:true,
-                webvisor:true
+                webvisor:false
               });
             `,
           }}
@@ -81,11 +127,12 @@ export default function RootLayout({
             />
           </div>
         </noscript>
-
-        <Navbar />
-        <ToastContainer />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Navbar />
+          <ToastContainer />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

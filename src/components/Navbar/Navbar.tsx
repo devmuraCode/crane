@@ -9,22 +9,25 @@ import MenuItem from "./MenuList";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Logo from "./Logo";
-import Link from "next/link";
 
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getequipmentTypes, getProductsByCategory } from "@/lib/api";
+import { EquipmentType } from "@/lib/types";
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const queryClient = useQueryClient();
+
+  const {
+    data: equipmentTypes,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["equipmentTypes"],
+    queryFn: getequipmentTypes,
+  });
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -67,6 +70,14 @@ export const Navbar = () => {
     { label: "О нас", href: "/about" },
   ];
 
+  const plainEquipmentTypes =
+    equipmentTypes?.map((item: EquipmentType) => ({
+      id: item.id,
+      slug: item.name,
+      label: item.type.name,
+    })) || [];
+
+
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
       <Container>
@@ -83,15 +94,33 @@ export const Navbar = () => {
               <DropdownMenuContent className={styles.dropdown}>
                 <div className={styles.catalog}>
                   <ul>
-                    <Link href="/catalog">Автокраны</Link>
-                    <Link href="/catalog">Автолифты</Link>
-                    <Link href="/catalog">Траллы</Link>
-                    <Link href="/catalog">Шаланды</Link>
-                    <Link href="/catalog">Экскаваторы</Link>
+                    {isLoading && <p>Загрузка...</p>}
+                    {error && <p>Ошибка загрузки</p>}
+                    {plainEquipmentTypes?.map((item: any) => (
+                      <MenuItem
+                        label={item.label}
+                        key={item.id}
+                        href={`/catalog/${item.slug}`}
+                        onClick={async () => {
+                          try {
+                            const data = await getProductsByCategory(item.slug);
+                            queryClient.setQueryData(
+                              ["productsByCategory", item.slug],
+                              data
+                            );
+                          } catch (e) {
+                            console.error(
+                              "Ошибка загрузки товаров по категории"
+                            );
+                          }
+                        }}
+                      />
+                    ))}
                   </ul>
                 </div>
               </DropdownMenuContent>
             </DropdownMenu>
+
             <MenuItem label={"Контакты"} href={"/contacts"} />
             <MenuItem label={"О нас"} href={"/about"} />
           </div>

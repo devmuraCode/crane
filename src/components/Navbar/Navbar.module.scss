@@ -4,7 +4,7 @@
   position: relative;
   z-index: 1;
   overflow: visible;
-
+  padding: 1rem 0;
   &::before {
     content: "";
     position: absolute;
@@ -65,7 +65,7 @@
   padding: 10px 0;
   display: block;
   transition: color 0.3s;
-
+  cursor: pointer;
   &:hover {
     color: #007bff;
   }

@@ -8,12 +8,19 @@ interface MenuItemProps {
   href: string;
 }
 
-const MenuItem = ({ label, href }: MenuItemProps) => {
-  return (
-    <Link href={href} className={styles.link}>
-      {label}
-    </Link>
-  );
-};
+const MenuItem = ({
+  label,
+  href,
+  onClick,
+}: {
+  label: string;
+  href: string;
+  onClick?: () => void;
+}) => (
+  <Link href={href} onClick={onClick} className={styles.link}>
+    {label}
+  </Link>
+);
+
 
 export default MenuItem;
