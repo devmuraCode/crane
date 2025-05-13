@@ -16,7 +16,7 @@ export const SectionFor = () => {
             <div className={styles.icons}>
               <GoProjectSymlink className={styles.icon} />
               <h1>
-                <CountUp end={128} duration={3} />
+                <CountUp end={800} duration={3} />
               </h1>
             </div>
             <div className={styles.content}>
@@ -28,7 +28,7 @@ export const SectionFor = () => {
             <div className={styles.icons}>
               <CiUser className={styles.icon} />
               <h1>
-                +<CountUp end={10} duration={3} />
+                +<CountUp end={60} duration={3} />
               </h1>
             </div>
             <div className={styles.content}>
@@ -40,7 +40,7 @@ export const SectionFor = () => {
             <div className={styles.icons}>
               <IoMdInfinite className={styles.icon} />
               <h1>
-                <CountUp end={15} duration={3} />
+                <CountUp end={1000} duration={3} />
               </h1>
             </div>
             <div className={styles.content}>

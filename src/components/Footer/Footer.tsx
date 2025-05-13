@@ -64,10 +64,11 @@ export const Footer = () => {
           <div className={styles.column}>
             <h4>Наши контакты</h4>
             <p>
-              <FaPhoneAlt /> <strong>+998 99-853-08-53</strong>
+              <FaPhoneAlt /> <a href="tel:+998998530853">+998 99-853-08-53</a>
             </p>
             <p>
-              <FaPhoneAlt /> <strong>+998 97-753-06-53</strong>
+              <FaPhoneAlt />{" "}
+              <a href="tel:998 97-753-06-53">+998 97-753-06-53</a>
             </p>
             <p>Пн. – Пт.: с 9:00 до 18:00</p>
             <p>
