@@ -1,3 +1,4 @@
+import useContactModal from "@/hooks/useContactModal";
 import styles from "./CardDetails.module.scss";
 import { Details } from "@/types/details";
 
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const CardDetails: React.FC<Props> = ({ product }) => {
+  const contactModal = useContactModal();
   return (
     <div className={styles.container}>
       <div className={styles.card}>
@@ -44,8 +46,9 @@ const CardDetails: React.FC<Props> = ({ product }) => {
           </p>
 
           <div className={styles.actions}>
-            <button className={styles.primary}>Заказать товар</button>
-            <button className={styles.secondary}>Задать вопрос</button>
+            <button className={styles.primary} onClick={contactModal.onOpen}>
+              Заказать товар
+            </button>
           </div>
         </div>
       </div>
@@ -55,7 +58,7 @@ const CardDetails: React.FC<Props> = ({ product }) => {
           <table>
             <tbody>
               {product.characteristics.map((char: any) => (
-                <tr key={char.name}>
+                <tr key={char.value}>
                   <td>{char.name}</td>
                   <td>{char.value}</td>
                 </tr>

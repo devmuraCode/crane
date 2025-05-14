@@ -55,16 +55,18 @@
 }
 
 .primary {
-  background-color: #1c77d3;
-  color: #fff;
+  background-color: #99f63d;
+  color: black;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #99f63d;
+
   font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
 
   &:hover {
-    background-color: #155fa0;
+    background-color: #fff;
+    border: 1px solid #99f63d;
   }
 }
 

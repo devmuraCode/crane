@@ -7,6 +7,8 @@ import Script from "next/script";
 import logo from "@/assets/logo.png";
 import { ToastContainer } from "react-toastify";
 import { QueryProvider } from "@/components/QueryProvider";
+import Modal from "@/components/Modals/Modal";
+import { ContactModal } from "@/components/Modals/ContactModal";
 const font = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -132,6 +134,7 @@ export default function RootLayout({
           <ToastContainer />
           {children}
           <Footer />
+          <ContactModal />
         </QueryProvider>
       </body>
     </html>
