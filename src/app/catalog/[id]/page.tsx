@@ -34,9 +34,9 @@ export default function CatalogPage() {
               key={product.id}
               product={{
                 id: product.id,
-                name: product.model,
+                name: product.name,
                 image: product.image,
-                pricing: product.pricing.hourly_rate,
+                pricing: product.pricing,
                 description: product.description,
                 category: product.category,
                 load_capacity: product.load_capacity,

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./ProductCard.module.scss";
 
 export interface Details {
@@ -38,7 +39,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       {product.description && (
         <p className={styles.description}>{product.description}</p>
       )}
-      <button className={styles.button}>Подробнее</button>
+      <Link
+        href={`/catalog/${product.category.name}/${product.id}`}
+        className={styles.button}
+      >
+        Подробнее
+      </Link>
     </div>
   );
 };
