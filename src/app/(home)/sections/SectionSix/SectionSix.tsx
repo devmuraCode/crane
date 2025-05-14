@@ -5,6 +5,7 @@ import styles from "./SectionSix.module.scss";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { getequipmentTypes } from "@/lib/api";
+import Link from "next/link";
 
 export const SectionSix = () => {
   const {
@@ -28,18 +29,21 @@ export const SectionSix = () => {
 
         {!isLoading && !error && (
           <div className={styles.grid}>
-            {equipmentTypes.map((item, index) => (
-              <div className={styles.card} key={index}>
+            {equipmentTypes?.map((item, index) => (
+              <Link
+                className={styles.card}
+                key={index}
+                href={`/catalog/${item.name}`}
+              >
                 <div className={styles.imageWrapper}>
-                  {/* <Image
+                  <img
                     src={item.image}
-                    alt={item.title}
-                    fill
+                    alt={item.name}
                     style={{ objectFit: "cover" }}
-                  /> */}
+                  />
                 </div>
-                <div className={styles.label}>{item.type.name}</div>
-              </div>
+                <div className={styles.label}>{item.name}</div>
+              </Link>
             ))}
           </div>
         )}

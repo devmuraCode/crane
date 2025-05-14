@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { getProductsByCategory } from "@/lib/api";
 import Container from "@/components/Container/Container";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
-import styles from "../sections/SectionOne.module.scss";
+import styles from "./SectionOne.module.scss";
 
 export default function CatalogPage() {
   const params = useParams();
@@ -23,7 +23,7 @@ export default function CatalogPage() {
 
   if (isLoading) return <p>Загрузка товаров...</p>;
   if (error) return <p>Ошибка загрузки товаров</p>;
-  const categoryTitle = products?.[0]?.category?.type?.name;
+  const categoryTitle = products?.[0]?.category?.name;
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -35,8 +35,7 @@ export default function CatalogPage() {
               product={{
                 id: product.id,
                 name: product.model,
-                image:
-                  "https://astslon.ru/files/styles/original-size-image/public/catalogunit/photos/9427.jpg",
+                image: product.image,
                 price: product.pricing?.hourly_rate || 0,
                 description: product.description,
               }}

@@ -73,10 +73,9 @@ export const Navbar = () => {
   const plainEquipmentTypes =
     equipmentTypes?.map((item: EquipmentType) => ({
       id: item.id,
-      slug: item.name,
-      label: item.type.name,
+      label: item.name,
+      image: item.image,
     })) || [];
-
 
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
@@ -100,12 +99,12 @@ export const Navbar = () => {
                       <MenuItem
                         label={item.label}
                         key={item.id}
-                        href={`/catalog/${item.slug}`}
+                        href={`/catalog/${item.label}`}
                         onClick={async () => {
                           try {
-                            const data = await getProductsByCategory(item.slug);
+                            const data = await getProductsByCategory(item.name);
                             queryClient.setQueryData(
-                              ["productsByCategory", item.slug],
+                              ["productsByCategory", item.name],
                               data
                             );
                           } catch (e) {
