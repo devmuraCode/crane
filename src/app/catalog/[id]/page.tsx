@@ -36,8 +36,14 @@ export default function CatalogPage() {
                 id: product.id,
                 name: product.model,
                 image: product.image,
-                price: product.pricing?.hourly_rate || 0,
+                pricing: product.pricing.hourly_rate,
                 description: product.description,
+                category: product.category,
+                load_capacity: product.load_capacity,
+                boom_reach: product.boom_reach,
+                floor_reach: product.floor_reach,
+                rental_condition: product.rental_condition,
+                characteristics: product.characteristics,
               }}
             />
           ))}

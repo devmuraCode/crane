@@ -3,9 +3,26 @@ import styles from "./ProductCard.module.scss";
 export interface Details {
   id: number;
   name: string;
+  category: {
+    id: number;
+    name: string;
+    image: string;
+  };
+  pricing: {
+    id: number;
+    hourly_rate: string;
+    minimum_order: string;
+  };
+  load_capacity: string;
+  boom_reach: string;
+  floor_reach: string;
+  description: string;
+  rental_condition: string;
+  characteristics: {
+    name: string;
+    value: string;
+  };
   image: string;
-  price: number;
-  description?: string;
 }
 
 interface ProductCardProps {
@@ -17,11 +34,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     <div className={styles.card}>
       <img src={product.image} alt={product.name} className={styles.image} />
       <h3 className={styles.name}>{product.name}</h3>
-      <p className={styles.price}>
-        {product.price > 0
-          ? `${product.price.toLocaleString()} сум`
-          : "Цена по запросу"}
-      </p>
+      <p className={styles.price}>{product.pricing.hourly_rate} сум</p>
       {product.description && (
         <p className={styles.description}>{product.description}</p>
       )}
