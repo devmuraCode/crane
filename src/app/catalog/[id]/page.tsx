@@ -10,6 +10,7 @@ import styles from "./SectionOne.module.scss";
 export default function CatalogPage() {
   const params = useParams();
   const categoryName = params?.id as string;
+  console.log(categoryName);
 
   const {
     data: products,
@@ -21,9 +22,9 @@ export default function CatalogPage() {
     enabled: !!categoryName,
   });
 
-  if (isLoading) return <p>Загрузка товаров...</p>;
-  if (error) return <p>Ошибка загрузки товаров</p>;
-  const categoryTitle = products?.[0]?.category?.name;
+  if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <div>Произошла ошибка при загрузке данных</div>;
+  const categoryTitle = products?.[0]?.category?.slug;
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -34,6 +35,7 @@ export default function CatalogPage() {
               key={product.id}
               product={{
                 id: product.id,
+
                 name: product.name,
                 image: product.image,
                 pricing: product.pricing,

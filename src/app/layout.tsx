@@ -82,7 +82,7 @@ export default function RootLayout({
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-W5H6PGSD');
+              })(window,document,'script','dataLayer','AW-16929257825');
             `,
           }}
         />
@@ -91,7 +91,7 @@ export default function RootLayout({
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-W5H6PGSD"
+            src="https://www.googletagmanager.com/ns.html?id=AW-16929257825"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
@@ -132,7 +132,7 @@ export default function RootLayout({
         <QueryProvider>
           <Navbar />
           <ToastContainer />
-          {children}
+          <div className="layout">{children}</div>
           <Footer />
           <ContactModal />
         </QueryProvider>

@@ -8,6 +8,7 @@ export interface Details {
     id: number;
     name: string;
     image: string;
+    slug: string;
   };
   pricing: {
     id: number;
@@ -35,12 +36,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     <div className={styles.card}>
       <img src={product.image} alt={product.name} className={styles.image} />
       <h3 className={styles.name}>{product.name}</h3>
-      <p className={styles.price}>{product.pricing.hourly_rate} сум</p>
-      {product.description && (
-        <p className={styles.description}>{product.description}</p>
-      )}
+
       <Link
-        href={`/catalog/${product.category.name}/${product.id}`}
+        href={`/catalog/${product.category.slug}/${product.id}`}
         className={styles.button}
       >
         Подробнее

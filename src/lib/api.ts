@@ -10,7 +10,8 @@ export const getequipmentTypes = async (): Promise<EquipmentType[]> => {
   return res.data;
 };
 
+
 export const getProductsByCategory = async (category_name: string) => {
-  const res = await api.get(`/products/by-category//${category_name}`);
+  const res = await api.get(`/products/by-category/${category_name}`);
   return res.data;
 };

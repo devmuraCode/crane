@@ -116,5 +116,16 @@
   }
   body {
     @apply bg-background text-foreground;
+
   }
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 60vh; 
+}
+
+.main-content {
+  flex: 1;
 }

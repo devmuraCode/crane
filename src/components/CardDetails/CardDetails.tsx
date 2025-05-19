@@ -36,15 +36,6 @@ const CardDetails: React.FC<Props> = ({ product }) => {
           <p>
             <strong>Цена за час:</strong> {product.pricing.hourly_rate} сум
           </p>
-          <p>
-            <strong>Минимальный заказ:</strong> {product.pricing.minimum_order}{" "}
-            сум
-          </p>
-
-          <p>
-            <strong>Описание:</strong> {product.description}
-          </p>
-
           <div className={styles.actions}>
             <button className={styles.primary} onClick={contactModal.onOpen}>
               Заказать товар

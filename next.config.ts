@@ -3,7 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   swcMinify: true,
- 
+  images: {
+    domains: ["https://back.avto-kran.uz/"],
+  },
   sassOptions: {
     includePaths: ["./src/styles"],
   },

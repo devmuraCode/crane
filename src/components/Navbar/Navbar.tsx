@@ -69,11 +69,13 @@ export const Navbar = () => {
     { label: "Контакты", href: "/contacts" },
     { label: "О нас", href: "/about" },
   ];
+console.log(equipmentTypes);
 
   const plainEquipmentTypes =
     equipmentTypes?.map((item: EquipmentType) => ({
       id: item.id,
       label: item.name,
+      slug: item.slug,
       image: item.image,
     })) || [];
 
@@ -99,12 +101,14 @@ export const Navbar = () => {
                       <MenuItem
                         label={item.label}
                         key={item.id}
-                        href={`/catalog/${item.label}`}
+                        href={`/catalog/${item.slug}`}
                         onClick={async () => {
                           try {
-                            const data = await getProductsByCategory(item.name);
+                            const data = await getProductsByCategory(
+                              item.label
+                            );
                             queryClient.setQueryData(
-                              ["productsByCategory", item.name],
+                              ["productsByCategory", item.slug],
                               data
                             );
                           } catch (e) {
