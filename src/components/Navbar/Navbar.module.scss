@@ -114,3 +114,15 @@
     display: none;
   }
 }
+.mobileMenu p {
+  font-size: 18px;
+  color: #333;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}

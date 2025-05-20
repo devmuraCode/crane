@@ -16,8 +16,10 @@ import Logo from "./Logo";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getequipmentTypes, getProductsByCategory } from "@/lib/api";
 import { EquipmentType } from "@/lib/types";
+
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [catalogOpen, setCatalogOpen] = useState(false); // ✅ new state
   const queryClient = useQueryClient();
 
   const {
@@ -57,6 +59,7 @@ export const Navbar = () => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
         setMenuOpen(false);
+        setCatalogOpen(false);
       }
     };
     window.addEventListener("resize", handleResize);
@@ -69,7 +72,6 @@ export const Navbar = () => {
     { label: "Контакты", href: "/contacts" },
     { label: "О нас", href: "/about" },
   ];
-console.log(equipmentTypes);
 
   const plainEquipmentTypes =
     equipmentTypes?.map((item: EquipmentType) => ({
@@ -138,11 +140,45 @@ console.log(equipmentTypes);
 
         {menuOpen && (
           <div className={styles.mobileMenu}>
-            {menuItems.map((item) => (
-              <div key={item.label} onClick={() => setMenuOpen(false)}>
-                <MenuItem label={item.label} href={item.href} />
-              </div>
-            ))}
+            {menuItems.map((item) => {
+              if (item.label === "Каталог") {
+                return (
+                  <div key={item.label}>
+                    <p
+                      className={styles.link}
+                      onClick={() => setCatalogOpen(!catalogOpen)}
+                    >
+                      Каталог {catalogOpen ? "▲" : "▼"}
+                    </p>
+                    {catalogOpen && (
+                      <div className={styles.catalog}>
+                        <ul>
+                          {isLoading && <p>Загрузка...</p>}
+                          {error && <p>Ошибка загрузки</p>}
+                          {plainEquipmentTypes.map((item: any) => (
+                            <MenuItem
+                              label={item.label}
+                              key={item.id}
+                              href={`/catalog/${item.slug}`}
+                              onClick={() => {
+                                setMenuOpen(false);
+                                setCatalogOpen(false);
+                              }}
+                            />
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <div key={item.label} onClick={() => setMenuOpen(false)}>
+                  <MenuItem label={item.label} href={item.href} />
+                </div>
+              );
+            })}
           </div>
         )}
       </Container>

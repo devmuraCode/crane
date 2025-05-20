@@ -23,7 +23,8 @@ export const Footer = () => {
 
   const plainEquipmentTypes = equipmentTypes?.map((item: any) => ({
     id: item.id,
-    name: item.name,
+    slug: item.slug,
+    label: item.name,
   }));
 
   return (
@@ -53,9 +54,9 @@ export const Footer = () => {
               {error && <p>Ошибка загрузки</p>}
               {plainEquipmentTypes?.map((item: any) => (
                 <MenuItem
-                  label={item.name}
+                  label={item.label}
                   key={item.id}
-                  href={`/catalog/${item.name}`}
+                  href={`/catalog/${item.slug}`}
                 />
               ))}
             </ul>

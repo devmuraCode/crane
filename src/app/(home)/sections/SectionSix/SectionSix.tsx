@@ -33,7 +33,7 @@ export const SectionSix = () => {
               <Link
                 className={styles.card}
                 key={index}
-                href={`/catalog/${item.name}`}
+                href={`/catalog/${item.slug}`}
               >
                 <div className={styles.imageWrapper}>
                   <img
