@@ -12,7 +12,7 @@ import { ContactModal } from "@/components/Modals/ContactModal";
 const font = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Crane",
+  title: "Авто краны",
   icons: {
     icon: logo.src,
   },

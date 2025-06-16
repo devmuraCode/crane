@@ -8,12 +8,13 @@ import { SectionTwo } from "./sections/SectionTwo/SectionTwo";
 export default function Page() {
   return (
     <div>
-     <SectionOne/>
-     <SectionTwo/>
-     <SectionThree/>
-     <SectionFor/>
-     <SectionSix/>
-     <SectionFive/>
+      <SectionOne />
+      <SectionSix />
+      <SectionTwo />
+      <SectionThree />
+      {/* <SectionFor /> */}
+
+      <SectionFive />
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function CatalogPage() {
 
   if (isLoading) return <p>Загрузка...</p>;
   if (error) return <div>Произошла ошибка при загрузке данных</div>;
-  const categoryTitle = products?.[0]?.category?.slug;
+  const categoryTitle = products?.[0]?.category?.name;
   return (
     <div className={styles.wrapper}>
       <Container>

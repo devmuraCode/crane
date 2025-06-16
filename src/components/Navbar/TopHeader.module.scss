@@ -1,0 +1,63 @@
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  font-size: 14px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0;
+      color: gray;
+    }
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    .time {
+      color: gray;
+      margin: 0;
+    }
+
+    .callButton {
+      padding: 0.75rem 1rem;
+      background-color: #99f63d;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:focus {
+        background: #fff;
+        border-color: #99f63d;
+      }
+    }
+  }
+}

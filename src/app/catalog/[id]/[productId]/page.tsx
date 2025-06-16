@@ -30,9 +30,10 @@ export default function ProductDetailPage() {
   const product = products?.find((item: any) => String(item.id) === productId);
   console.log(product);
 
-  const similarProducts = products
-    ?.filter((item: any) => String(item.id) !== productId)
-    .slice(0, 4);
+const similarProducts = products
+  ?.filter((item: any) => String(item.id) !== productId)
+  .slice(0, 4);
+
 
   if (isLoading) return <p>Загрузка...</p>;
   if (error) return <p>Ошибка загрузки продукта</p>;
@@ -52,7 +53,7 @@ export default function ProductDetailPage() {
           <div className={styles.similarSection}>
             <h2 className={styles.similarTitle}>Похожие товары</h2>
             <div className={styles.similarList}>
-              {similarProducts.slice(3).map((item: any) => (
+              {similarProducts.map((item: any) => (
                 <ProductCard key={item.id} product={item} />
               ))}
             </div>

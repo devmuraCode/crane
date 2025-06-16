@@ -16,10 +16,11 @@ import Logo from "./Logo";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getequipmentTypes, getProductsByCategory } from "@/lib/api";
 import { EquipmentType } from "@/lib/types";
+import TopHeader from "./TopHeader";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [catalogOpen, setCatalogOpen] = useState(false); // ✅ new state
+  const [catalogOpen, setCatalogOpen] = useState(false); 
   const queryClient = useQueryClient();
 
   const {
@@ -82,106 +83,109 @@ export const Navbar = () => {
     })) || [];
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
-      <Container>
-        <div className={styles.navbar}>
-          <Logo />
+    <>
+    <TopHeader/>
+      <div ref={wrapperRef} className={styles.wrapper}>
+        <Container>
+          <div className={styles.navbar}>
+            <Logo />
 
-          <div className={styles.desktopMenu}>
-            <MenuItem label={"Главное"} href={"/"} />
+            <div className={styles.desktopMenu}>
+              <MenuItem label={"Главное"} href={"/"} />
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <p className={styles.link}>Каталог</p>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className={styles.dropdown}>
-                <div className={styles.catalog}>
-                  <ul>
-                    {isLoading && <p>Загрузка...</p>}
-                    {error && <p>Ошибка загрузки</p>}
-                    {plainEquipmentTypes?.map((item: any) => (
-                      <MenuItem
-                        label={item.label}
-                        key={item.id}
-                        href={`/catalog/${item.slug}`}
-                        onClick={async () => {
-                          try {
-                            const data = await getProductsByCategory(
-                              item.label
-                            );
-                            queryClient.setQueryData(
-                              ["productsByCategory", item.slug],
-                              data
-                            );
-                          } catch (e) {
-                            console.error(
-                              "Ошибка загрузки товаров по категории"
-                            );
-                          }
-                        }}
-                      />
-                    ))}
-                  </ul>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <p className={styles.link}>Каталог</p>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className={styles.dropdown}>
+                  <div className={styles.catalog}>
+                    <ul>
+                      {isLoading && <p>Загрузка...</p>}
+                      {error && <p>Ошибка загрузки</p>}
+                      {plainEquipmentTypes?.map((item: any) => (
+                        <MenuItem
+                          label={item.label}
+                          key={item.id}
+                          href={`/catalog/${item.slug}`}
+                          onClick={async () => {
+                            try {
+                              const data = await getProductsByCategory(
+                                item.label
+                              );
+                              queryClient.setQueryData(
+                                ["productsByCategory", item.slug],
+                                data
+                              );
+                            } catch (e) {
+                              console.error(
+                                "Ошибка загрузки товаров по категории"
+                              );
+                            }
+                          }}
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-            <MenuItem label={"Контакты"} href={"/contacts"} />
-            <MenuItem label={"О нас"} href={"/about"} />
+              <MenuItem label={"Контакты"} href={"/contacts"} />
+              <MenuItem label={"О нас"} href={"/about"} />
+            </div>
+
+            <div
+              className={styles.mobileIcon}
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            </div>
           </div>
 
-          <div
-            className={styles.mobileIcon}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-          </div>
-        </div>
+          {menuOpen && (
+            <div className={styles.mobileMenu}>
+              {menuItems.map((item) => {
+                if (item.label === "Каталог") {
+                  return (
+                    <div key={item.label}>
+                      <p
+                        className={styles.link}
+                        onClick={() => setCatalogOpen(!catalogOpen)}
+                      >
+                        Каталог {catalogOpen ? "▲" : "▼"}
+                      </p>
+                      {catalogOpen && (
+                        <div className={styles.catalog}>
+                          <ul>
+                            {isLoading && <p>Загрузка...</p>}
+                            {error && <p>Ошибка загрузки</p>}
+                            {plainEquipmentTypes.map((item: any) => (
+                              <MenuItem
+                                label={item.label}
+                                key={item.id}
+                                href={`/catalog/${item.slug}`}
+                                onClick={() => {
+                                  setMenuOpen(false);
+                                  setCatalogOpen(false);
+                                }}
+                              />
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
 
-        {menuOpen && (
-          <div className={styles.mobileMenu}>
-            {menuItems.map((item) => {
-              if (item.label === "Каталог") {
                 return (
-                  <div key={item.label}>
-                    <p
-                      className={styles.link}
-                      onClick={() => setCatalogOpen(!catalogOpen)}
-                    >
-                      Каталог {catalogOpen ? "▲" : "▼"}
-                    </p>
-                    {catalogOpen && (
-                      <div className={styles.catalog}>
-                        <ul>
-                          {isLoading && <p>Загрузка...</p>}
-                          {error && <p>Ошибка загрузки</p>}
-                          {plainEquipmentTypes.map((item: any) => (
-                            <MenuItem
-                              label={item.label}
-                              key={item.id}
-                              href={`/catalog/${item.slug}`}
-                              onClick={() => {
-                                setMenuOpen(false);
-                                setCatalogOpen(false);
-                              }}
-                            />
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  <div key={item.label} onClick={() => setMenuOpen(false)}>
+                    <MenuItem label={item.label} href={item.href} />
                   </div>
                 );
-              }
-
-              return (
-                <div key={item.label} onClick={() => setMenuOpen(false)}>
-                  <MenuItem label={item.label} href={item.href} />
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </Container>
-    </div>
+              })}
+            </div>
+          )}
+        </Container>
+      </div>
+    </>
   );
 };

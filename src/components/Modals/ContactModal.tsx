@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import useContactModal from "@/hooks/useContactModal";
 import { toast } from "react-toastify";
@@ -18,6 +18,15 @@ type Inputs = {
 export const ContactModal = () => {
   const contactModal = useContactModal();
   const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+      contactModal.onOpen(); 
+      const timer = setTimeout(() => {
+        contactModal.onClose(); 
+      }, 5000);
+
+      return () => clearTimeout(timer); 
+    }, []);
 
   const {
     register,

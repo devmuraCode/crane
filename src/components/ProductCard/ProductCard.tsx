@@ -33,7 +33,10 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <div className={styles.card}>
+    <Link
+      href={`/catalog/${product.category.slug}/${product.id}`}
+      className={styles.card}
+    >
       <img src={product.image} alt={product.name} className={styles.image} />
       <h3 className={styles.name}>{product.name}</h3>
 
@@ -43,6 +46,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       >
         Подробнее
       </Link>
-    </div>
+    </Link>
   );
 };

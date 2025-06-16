@@ -1,13 +1,20 @@
+"use client";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
 import styles from "./SectionOne.module.scss";
-
+import Autoplay from "embla-carousel-autoplay";
 export const SectionOne = () => {
   return (
-    <Carousel>
+    <Carousel
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
+    >
       <CarouselContent>
         <CarouselItem className={styles.slide1}>
           <div className={styles.bannerText}>
